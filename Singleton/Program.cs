@@ -17,6 +17,7 @@ namespace Singleton
         class CustomerManager
         {
             private static CustomerManager _customerManager;
+            static object _lockObject = new object();
 
             private CustomerManager()
             {
@@ -27,9 +28,18 @@ namespace Singleton
             public static CustomerManager CreateSingleton()
             {
                 // CustomerManager daha önce oluşturulmamışsa ilk ve son örneği oluşturur.
-                if (_customerManager == null)
+                //if (_customerManager == null)
+                //{
+                //    _customerManager = new CustomerManager();
+                //}
+
+                // Thread safe bir implementasyon yapılmak istenirse;
+                lock (_lockObject)
                 {
-                    _customerManager = new CustomerManager();
+                    if (_customerManager == null)
+                    {
+                        _customerManager = new CustomerManager();
+                    }
                 }
 
                 return _customerManager;
