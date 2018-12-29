@@ -12,6 +12,22 @@ namespace Prototype
     {
         static void Main(string[] args)
         {
+            Customer customer = new Customer
+            {
+                FirstName = "Ali",
+                LastName = "Can",
+                City = "Ankara",
+                Id = 1
+            };
+            Console.WriteLine("Customer1: " + customer.FirstName);
+
+            //İlk oluşturduğumuz customer nesnesinden klonladık.
+            Customer customer2 = (Customer)customer.Clone();
+            Console.WriteLine("Customer2: " + customer2.FirstName);
+
+            customer2.FirstName = "Hasan";
+            Console.WriteLine("Customer2: " + customer2.FirstName);
+            Console.ReadLine();
         }
     }
 
