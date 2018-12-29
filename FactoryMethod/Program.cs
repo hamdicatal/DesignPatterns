@@ -48,8 +48,9 @@ namespace FactoryMethod
         public void Save()
         {
             Console.WriteLine("Saved!");
-            //ILogger logger = new DemoLogger(); //DemoLogger class'ına bağımlı olduk. Yanlış kullanım. new yaparken dikkat edilmeli. Bunun yerine factory ile üretilebilir.
+            //ILogger logger = new DemoLogger(); //DemoLogger class'ına bağımlı olduk. Yanlış kullanım. "new" yaparken dikkat edilmeli. Bunun yerine factory ile üretilebilir.
             ILogger logger = new LoggerFactory().CreateLogger(); //Factory tasarım kalıbına uygun ideal kullanım.
+            logger.Log();
 
         }
     }
