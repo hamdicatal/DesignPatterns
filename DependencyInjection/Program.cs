@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ninject;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,8 +11,13 @@ namespace DependencyInjection
     {
         static void Main(string[] args)
         {
+            //Eğer bir IProductDal istenirse, EfProductDal ver. InSingletonScope() ifadesi ile Singleton kalıbına uygun bir şekilde tek bir instance oluşturulup, ortak olarak kullanılabilir. (IoC Container, Dependency Injection)
+            IKernel kernel = new StandardKernel();
+            kernel.Bind<IProductDal>().To<EfProductDal>().InSingletonScope();
+
             //ProductManager productManager = new ProductManager(new EfProductDal());
-            ProductManager productManager = new ProductManager(new NhProductDal());
+            //ProductManager productManager = new ProductManager(new NhProductDal());
+            ProductManager productManager = new ProductManager(kernel.Get<IProductDal>());
             productManager.Save();
             Console.ReadLine();
         }
