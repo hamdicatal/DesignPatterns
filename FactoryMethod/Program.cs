@@ -32,7 +32,7 @@ namespace FactoryMethod
         public ILogger CreateLogger()
         {
             //Duruma göre farklı log'lama işlemleri yapılabilir.
-            return new DemoLogger();
+            return new DemoLogger2();
         }
     }
 
